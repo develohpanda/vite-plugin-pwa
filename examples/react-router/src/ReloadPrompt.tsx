@@ -44,6 +44,10 @@ function ReloadPrompt() {
     setOfflineReady(false)
     setNeedRefresh(false)
   }
+  
+  React.useEffect(() => {
+    updateServiceWorker(true);
+  }, [updateServiceWorker]);
 
   return (
     <div className="ReloadPrompt-container">
@@ -55,7 +59,7 @@ function ReloadPrompt() {
                 : <span>New content available, click on reload button to update.</span>
               }
             </div>
-            { needRefresh && <button className="ReloadPrompt-toast-button" onClick={() => updateServiceWorker(true)}>Reload</button> }
+            { needRefresh && <button className="ReloadPrompt-toast-button" onClick={() => updateServiceWorker(false)}>Reload</button> }
             <button className="ReloadPrompt-toast-button" onClick={() => close()}>Close</button>
           </div>
       }
